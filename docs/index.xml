@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>jwj&#39;s blog.</title>
+    <link>https://iri-jwj.github.io/</link>
+    <description>Recent content on jwj&#39;s blog.</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 05 Jun 2022 20:50:45 +0800</lastBuildDate><atom:link href="https://iri-jwj.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>First Post</title>
+      <link>https://iri-jwj.github.io/posts/first-post/</link>
+      <pubDate>Sun, 05 Jun 2022 20:50:45 +0800</pubDate>
+      
+      <guid>https://iri-jwj.github.io/posts/first-post/</guid>
+      <description>这儿有很多东西要说 </description>
+    </item>
+    
+  </channel>
+</rss>
