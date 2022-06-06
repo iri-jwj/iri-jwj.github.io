@@ -1,20 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tags on jwj&#39;s blog.</title>
+    <title>Tags on jwj - stop and drink cocktails</title>
     <link>https://iri-jwj.github.io/tags/</link>
-    <description>Recent content in Tags on jwj&#39;s blog.</description>
+    <description>Recent content in Tags on jwj - stop and drink cocktails</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Sun, 05 Jun 2022 20:50:45 +0800</lastBuildDate><atom:link href="https://iri-jwj.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>tagTest</title>
-      <link>https://iri-jwj.github.io/tags/tagtest/</link>
-      <pubDate>Sun, 05 Jun 2022 20:50:45 +0800</pubDate>
-      
-      <guid>https://iri-jwj.github.io/tags/tagtest/</guid>
-      <description></description>
-    </item>
-    
+    <language>zh-cn</language><atom:link href="https://iri-jwj.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>
