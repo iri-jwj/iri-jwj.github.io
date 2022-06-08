@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Activity.setContentView后发生的事情 - jwj - stop and drink cocktails</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="iri.jwj" /><meta name="description" content="activity.setContentView() 后发生的事情 有时候看到好些文章的标题都在说 activity 的setContentView()方法后会发生什么，今天（很早之前写下的）也刚好了解了一下全局" /><meta name="keywords" content="Android, Life" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.100.1 with theme even" />
+
+
+<link rel="canonical" href="https://iri-jwj.github.io/post/activity.setcontentview%E5%90%8E%E5%8F%91%E7%94%9F%E7%9A%84%E4%BA%8B%E6%83%85/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Activity.setContentView后发生的事情" />
+<meta property="og:description" content="activity.setContentView() 后发生的事情 有时候看到好些文章的标题都在说 activity 的setContentView()方法后会发生什么，今天（很早之前写下的）也刚好了解了一下全局" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://iri-jwj.github.io/post/activity.setcontentview%E5%90%8E%E5%8F%91%E7%94%9F%E7%9A%84%E4%BA%8B%E6%83%85/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2022-06-08T20:46:05+08:00" />
+<meta property="article:modified_time" content="2022-06-08T20:46:05+08:00" />
+
+<meta itemprop="name" content="Activity.setContentView后发生的事情">
+<meta itemprop="description" content="activity.setContentView() 后发生的事情 有时候看到好些文章的标题都在说 activity 的setContentView()方法后会发生什么，今天（很早之前写下的）也刚好了解了一下全局"><meta itemprop="datePublished" content="2022-06-08T20:46:05+08:00" />
+<meta itemprop="dateModified" content="2022-06-08T20:46:05+08:00" />
+<meta itemprop="wordCount" content="1205">
+<meta itemprop="keywords" content="Android," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Activity.setContentView后发生的事情"/>
+<meta name="twitter:description" content="activity.setContentView() 后发生的事情 有时候看到好些文章的标题都在说 activity 的setContentView()方法后会发生什么，今天（很早之前写下的）也刚好了解了一下全局"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">jwj</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">jwj</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Activity.setContentView后发生的事情</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2022-06-08 </span>
+        
+          <span class="more-meta"> 约 1205 字 </span>
+          <span class="more-meta"> 预计阅读 3 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#activitysetcontentview-后发生的事情">activity.setContentView() 后发生的事情</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h2 id="activitysetcontentview-后发生的事情">activity.setContentView() 后发生的事情</h2>
+<p>有时候看到好些文章的标题都在说 activity 的<kbd>setContentView()</kbd>方法后会发生什么，今天（很早之前写下的）也刚好了解了一下全局替换样式的方法，做一个自己的总结；
+下面的总结都是以 AppcompatActivity 来解释的</p>
+<ol>
+<li>
+<p>先来看看 <kbd>setContentView()</kbd> 之前发生的事情：</p>
+<p>在我们调用 <kbd>setContentView()</kbd>之前我们都必须调用 super.onCreate() 方法, 在这个方法里需要注意的是最开头的几句：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">final AppCompatDelegate delegate = getDelegate();
+</span></span><span class="line"><span class="cl">delegate.installViewFactory();
+</span></span><span class="line"><span class="cl">delegate.onCreate(savedInstanceState);
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><kbd>delegate</kbd> 就是一个代理，它是一个抽象类，所有的实现都在<kbd>AppCompatDelegateImpl</kbd>里，在这里我们需要注意的是第二句 <kbd>installViewFactory()</kbd></p>
+<p>里面的实现是，如果根据当前 context 获取的 layoutInflate 中的 factory 为空，则为 layoutInflate 设置 factory 为自己（ delegate 实现了 factory2 的接口）但是当 factory 不为空时，就不会再为 layoutInflate 设置 factory ，使得 factory 不会被替换，也就为后面的全局替换样式等需求做好了铺垫。</p>
+<p>代码如下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">@Override
+</span></span><span class="line"><span class="cl">public void installViewFactory() {
+</span></span><span class="line"><span class="cl">    LayoutInflater layoutInflater = LayoutInflater.from(mContext);
+</span></span><span class="line"><span class="cl">    if (layoutInflater.getFactory() == null) {
+</span></span><span class="line"><span class="cl">        LayoutInflaterCompat.setFactory2(layoutInflater, this);
+</span></span><span class="line"><span class="cl">    } else {
+</span></span><span class="line"><span class="cl">        if (!(layoutInflater.getFactory2() instanceof AppCompatDelegateImpl)) {
+</span></span><span class="line"><span class="cl">            Log.i(TAG, &#34;The Activity&#39;s LayoutInflater already has a Factory installed&#34;
+</span></span><span class="line"><span class="cl">                    + &#34; so we can not install AppCompat&#39;s&#34;);
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>setContentView() 开始：</p>
+<p>调用顺序是<kbd>setContentView() -&gt; delegate.setContentView()</kbd></p>
+<p>在 delegate 中调用了 <kbd>LayoutInfate.from(context).inflate(resId,parent)</kbd>方法；顺便提一下这的里 parent 是 decorView 下的 FramLayout ，所以如果用 Android Studio 查看 view 的层级时会在自己的布局上看到好多层东西- -</p>
+<p>下面分析 inflate 方法里干了什么。这里我们跳过 layoutInflate 中 inflate 调用重载的 inflate 方法，直接到终点。（中间调用了一个方法把 xml 的 id 转换为了 xmlResourceParser）</p>
+<p>在最终的 inflate 方法里，做的事情就是找到 xml 中的头 -&gt; 解析 merge 标签（如果有）-&gt; 调用 createViewFromTag 方法创建 xml 中的根布局-&gt;调用 rInflateChildren() 方法创建子 view -&gt; 调用 rInflate() -&gt; 检测 merge 与 include 标签，然后依旧是调用了 createViewFromTag 方法</p>
+<p>在<kbd>createViewFromTag()</kbd>中，检测了 factory2 （以及 factory ）是否为空，不为空就调用<kbd>factory2.onCreateView</kbd>来创建 view。 当我们没有自己创建 factory 时，factory2 就是 delegate ，所以 onCreateView 最终调用的是 delegate 中的 createView 方法。如果所有的 factory 都为空，那么就会调用 layoutInflate 自身的 createView 方法，这里使用了反射的机制获取 View 的类来进行初始化。</p>
+<p>进入 delegate 中的 createView 时，调用 AppCompatViewInflater 中的 createView 方法，里面会根据 name 的类型来创建 view。但里面居然是用 switch()case 的方法来写。 如果是自定义 view 时，在 switch 语句块的最末尾调用的方法返回的是null,然后再在后面判断调用 onCreateView 方法，依旧使用反射机制。</p>
+<p>当所有都创建完成时,就会调用上面的讲到的 <kbd>parent.addView()</kbd>方法,将创建好的 view 加入.</p>
+</li>
+<li>
+<p>另外的想法</p>
+<p>在看到的文章中，通过在调用<kbd>super.OnCreate()</kbd>前创建一个 factory2 ，并实现自己的逻辑，来对创建的行为进行干预。这样后面 setContentView 就不会使用默认的 factory2，而是自定义的factory2。 这就需要看情况分类, 如果只需要对部分的样式修改， 那在自定义的factory2中还是要回到原本的创建流程，否则最终需要做的就是自己完成所有view的创建工作。使用场景上，现在已经有的包括:全局的主题修改、 代替 shape 和 seletor 、对特定的 view 作出改变等。</p>
+</li>
+</ol>
+
+    </div>
+
+    
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/android/">Android</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/exception/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Exception</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="iri.jwj@outlook.com" class="iconfont icon-email" title="email"></a>
+  <a href="https://iri-jwj.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>irijwj</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.191509a5c8442abdb6eb5020a332fd59bdd83a7e78a2d2241108df9113504292.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

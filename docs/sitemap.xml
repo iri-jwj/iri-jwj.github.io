@@ -2,19 +2,63 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://iri-jwj.github.io/categories/</loc>
+    <loc>https://iri-jwj.github.io/tags/android/</loc>
+    <lastmod>2022-06-08T21:19:18+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://iri-jwj.github.io/</loc>
+    <lastmod>2022-06-08T21:19:18+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://iri-jwj.github.io/post/messagequeue/</loc>
+    <lastmod>2022-06-08T21:19:18+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://iri-jwj.github.io/post/</loc>
+    <lastmod>2022-06-08T21:19:18+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://iri-jwj.github.io/tags/</loc>
+    <lastmod>2022-06-08T21:19:18+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://iri-jwj.github.io/post/%E5%8D%8F%E7%A8%8B/</loc>
+    <lastmod>2022-06-08T21:12:42+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://iri-jwj.github.io/post/exception/</loc>
+    <lastmod>2022-06-08T21:11:29+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://iri-jwj.github.io/post/activity.setcontentview%E5%90%8E%E5%8F%91%E7%94%9F%E7%9A%84%E4%BA%8B%E6%83%85/</loc>
+    <lastmod>2022-06-08T20:46:05+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://iri-jwj.github.io/categories/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
